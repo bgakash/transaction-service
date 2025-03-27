@@ -2,11 +2,13 @@ import express from "express";
 import path from "path";
 import { readFile } from "fs/promises";
 import cors from "cors";
+import compression from "compression";
 
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(compression());
 
 app.get("/transactions/:offset", async (req, res) => {
   const offset = req.params.offset;
